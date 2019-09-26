@@ -1,15 +1,33 @@
 import React from 'react';
 import './Game.scss';
 
-class Square extends React.Component {
+class Square extends React.Component<any, any> {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      value: props.value
+    };
+  }
+
   render() {
-    return <button className='square'>{/* TODO */}</button>;
+    return (
+      <button className='square' onClick={() => this.setState({ value: 'X' })}>
+        {this.state.value}
+      </button>
+    );
   }
 }
 
 class Board extends React.Component {
+  constructor(props: any) {
+    super(props);
+    this.state = {
+      squares: Array(9).fill(null)
+    };
+  }
+
   renderSquare(i: number) {
-    return <Square />;
+    return <Square value={i} />;
   }
 
   render() {
